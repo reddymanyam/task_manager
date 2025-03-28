@@ -69,7 +69,7 @@ const TaskManager: React.FC = () => {
                             </Stack>
 
                         ))) : <Typography variant='h6' sx={{ textAlign: "center", marginTop: "8px" }}>
-                            No tasks for today</Typography>
+                            No tasks for today ................................................</Typography>
                     }
                 </Stack>
             </Paper>
