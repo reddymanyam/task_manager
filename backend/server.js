@@ -1,11 +1,19 @@
 const express = require("express");
 const app = express();
+const { User } = require('./models/User');
+const connectDB  = require('./config/database');
+
 const PORT = process.env.PORT || 7777;
 
 
 
-app.listen(PORT, (req, res) => {
-    // res.status(201).send("server is running at port", PORT);
-    console.log("server is running at port", PORT);
-
-})
+connectDB()
+    .then(() => {
+        console.log("database connection established..!");
+        app.listen(PORT, () => {                           //creating the port (port is nothing but a server...!)
+            console.log(`Server is running at PORT:${PORT}`)
+        })
+    })
+    .catch((err) => {
+        console.log("database connection is not established")
+    })
