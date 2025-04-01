@@ -1,8 +1,8 @@
 const express = require('express');
 const User = require("../models/User");
-const addTask = express.Router();
+const addTaskRouter = express.Router();
 
-addTask.post('/addTask', async (req, res) => {
+addTaskRouter.post('/addTask', async (req, res) => {
     try {
         const task = new User(req.body);
         task.save();
@@ -12,4 +12,4 @@ addTask.post('/addTask', async (req, res) => {
     }
 });
 
-module.exports = { addTask };
+module.exports = { addTaskRouter };
