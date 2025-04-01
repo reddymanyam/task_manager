@@ -1,11 +1,19 @@
 const express = require("express");
 const app = express();
 const { User } = require('./models/User');
-const connectDB  = require('./config/database');
+const connectDB = require('./config/database');
 
 const PORT = process.env.PORT || 7777;
 
+app.use(express.json());
 
+const { getTaskRouter } = require('./routes/getTask');
+const { addTaskRouter } = require('./routes/addTask');
+const { deleteTaskRouter } = require('./routes/deleteTask');
+
+app.use('/', getTaskRouter);
+app.use('/', addTaskRouter);
+app.use('/', deleteTaskRouter);
 
 connectDB()
     .then(() => {
