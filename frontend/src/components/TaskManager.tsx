@@ -3,7 +3,7 @@ import ModeEditIcon from '@mui/icons-material/ModeEdit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ClearIcon from '@mui/icons-material/Clear';
 import CheckIcon from '@mui/icons-material/Check';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const TaskManager: React.FC = () => {
 
@@ -14,10 +14,18 @@ const TaskManager: React.FC = () => {
 
     const today: Date = new Date();
 
+    useEffect(() => {
+        const storedTasks = JSON.parse(localStorage.getItem("tasks"));
+        if (storedTasks) {
+            setTasks(storedTasks);
+        }
+    }, []);
+
     const handleAddTask = () => {
         if (!task.trim()) {
             return alert("Please enter the task");
         }
+        localStorage.setItem("tasks", task);
         setTasks([...tasks, task]);
         setTask("");
     }
@@ -92,7 +100,7 @@ const TaskManager: React.FC = () => {
                                                     sx={{
                                                         whiteSpace: "normal",
                                                         wordBreak: 'break-all',
-                                                        fontSize: "20px" 
+                                                        fontSize: "20px"
                                                     }}
                                                     key={id}
                                                 >
