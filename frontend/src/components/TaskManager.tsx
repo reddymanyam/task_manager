@@ -15,7 +15,7 @@ const TaskManager: React.FC = () => {
     const today: Date = new Date();
 
     useEffect(() => {
-        const storedTasks = JSON.parse();
+        const storedTasks = ;
         if (storedTasks) {
             setTasks(storedTasks);
         }
