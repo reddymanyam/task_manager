@@ -15,17 +15,21 @@ const TaskManager: React.FC = () => {
     const today: Date = new Date();
 
     useEffect(() => {
-        const storedTasks = ;
+        const storedTasks = localStorage.getItem("tasks");
+        const retrivedStoredTasks = storedTasks ? JSON.parse(storedTasks) : [];
+        console.log("retrivedStoredTasks....", retrivedStoredTasks);
+
         if (storedTasks) {
-            setTasks(storedTasks);
+            setTasks(retrivedStoredTasks);
         }
+
     }, []);
 
     const handleAddTask = () => {
         if (!task.trim()) {
             return alert("Please enter the task");
         }
-        localStorage.setItem("tasks", task);
+        localStorage.setItem("tasks", JSON.stringify([...tasks, task]));
         setTasks([...tasks, task]);
         setTask("");
     }
@@ -41,6 +45,7 @@ const TaskManager: React.FC = () => {
         }
         const updatedTasks = [...tasks];
         updatedTasks[id] = editValue;
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
         setTasks(updatedTasks);
         setIsEditing(null);
         setEditValue("");
@@ -51,7 +56,9 @@ const TaskManager: React.FC = () => {
     }
 
     const handleDelete = (id: number) => {
-        setTasks(tasks.filter((_, index) => index !== id));
+        const updatedTasks = tasks.filter((_, index) => index !== id);
+        localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+        setTasks(updatedTasks);
     }
 
 
