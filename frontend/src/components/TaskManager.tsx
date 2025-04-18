@@ -52,7 +52,8 @@ const TaskManager: React.FC = () => {
     }
 
     const handleCancel = () => {
-
+        setIsEditing(null);
+        setEditValue("")
     }
 
     const handleDelete = (id: number) => {
