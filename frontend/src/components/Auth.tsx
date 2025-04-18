@@ -64,10 +64,6 @@ import {
         display="flex"
         justifyContent="center"
         alignItems="center"
-        sx={{
-          background: 'linear-gradient(to right, #00c6ff, #0072ff)',
-          px: 2
-        }}
       >
         <Card
           sx={{
@@ -76,7 +72,6 @@ import {
             background: 'rgba(255,255,255,0.1)',
             boxShadow: '0 8px 32px rgba(0,0,0,0.2)',
             borderRadius: 4,
-            color: '#fff'
           }}
         >
           <Tabs
